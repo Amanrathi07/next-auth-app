@@ -18,7 +18,7 @@ const handler = NextAuth({
                 const dbResponse = { username: "aman", password: "amanaman" };
 
                 if (username === dbResponse.username && password === dbResponse.password) {
-                    return {dbResponse}; // returns user object
+                    return {name : "aman" , ...dbResponse}; // returns user object
                 }
                 return null; // invalid credentials
             }

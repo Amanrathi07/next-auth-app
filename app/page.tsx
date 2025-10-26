@@ -21,9 +21,8 @@ function RealHome(){
     <div>
     {session.status ==="authenticated" ?<button onClick={()=>{
       signOut()
-    }}>signout</button>:<button onClick={()=>{
-      signIn() ;
-      
+    }}>signout  , welcome back {session.data.user?.name}</button>:<button onClick={()=>{
+      signIn()
     }}>signIn</button>}
     
   </div>
