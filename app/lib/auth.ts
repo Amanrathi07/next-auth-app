@@ -1,7 +1,6 @@
 
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signIn } from "next-auth/react";
-
+import GoogleProvider from "next-auth/providers/google";
 
 
 export const NEXT_VATIABLE = 
@@ -25,7 +24,10 @@ export const NEXT_VATIABLE =
                 }
                 return null; // invalid credentials
             }
-        })
+        }), GoogleProvider({
+    clientId: process.env.GOOGLE_CLIENT_ID || "" ,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || ""
+  })
 
     ],
     secreat : process.env.NEXTAUTH_SECRET
