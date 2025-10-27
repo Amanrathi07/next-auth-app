@@ -1,6 +1,7 @@
 
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { signIn } from "next-auth/react";
 
 
 export const NEXT_VATIABLE = 
@@ -30,7 +31,7 @@ export const NEXT_VATIABLE =
   })
 
     ],
-    secreat : process.env.NEXTAUTH_SECRET
+    secret : process.env.NEXTAUTH_SECRET
     ,
     callbacks: {
   async jwt({ token, user }) {
@@ -41,6 +42,9 @@ export const NEXT_VATIABLE =
     session.user.id = token.id;
     return session;
   }
+},
+pages:{
+  signIn:"/signin"
 }
     
 } 
