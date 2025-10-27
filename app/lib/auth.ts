@@ -1,11 +1,10 @@
 
 import CredentialsProvider from "next-auth/providers/credentials";
+import { signIn } from "next-auth/react";
 
 
 
-export function auth(){
-    console.log(process.env.NEXTAUTH_SECRET)
-    return(
+export const NEXT_VATIABLE = 
          {
     providers: [
         CredentialsProvider({
@@ -19,10 +18,10 @@ export function auth(){
                 const password = credentials?.password;
 
                 // Your logic to check username/password
-                const dbResponse = { username: "aman", password: "amanaman" };
+                const user = { id:1 ,name:"aman", email: "amanrathi@gmail.com", password: "amanaman" };
 
-                if (username === dbResponse.username && password === dbResponse.password) {
-                    return {name : "aman" , ...dbResponse}; // returns user object
+                if ( user) {
+                    return user; // returns user object
                 }
                 return null; // invalid credentials
             }
@@ -31,7 +30,16 @@ export function auth(){
     ],
     secreat : process.env.NEXTAUTH_SECRET
     ,
+    callbacks: {
+  async jwt({ token, user }) {
+    if (user) token.id = user.id;
+    return token;
+  },
+  async session({ session, token }) {
+    session.user.id = token.id;
+    return session;
+  }
+}
     
 } 
-    )
-} 
+    
