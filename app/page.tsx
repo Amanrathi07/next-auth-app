@@ -3,11 +3,11 @@
 
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 
-import { NEXT_VATIABLE } from "./lib/auth"
+
 
 
 export default function Home() {
-  const session = useSession(NEXT_VATIABLE)
+  const session = useSession()
 
   return (
     <div>
